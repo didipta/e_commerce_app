@@ -43,31 +43,26 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     return GetBuilder<BottomNavBarController>(builder: (_) {
       return Scaffold(
         body: _screens[_navBarController.selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey,
-          currentIndex: _navBarController.selectedIndex,
-          onTap: _navBarController.changeIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-
-            ),
-            BottomNavigationBarItem(
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _navBarController.selectedIndex,
+          onDestinationSelected: _navBarController.changeIndex,
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(
               icon: Icon(Icons.category_outlined),
               label: 'Category',
             ),
-            BottomNavigationBarItem(
+            NavigationDestination(
               icon: Icon(Icons.shopping_cart),
               label: 'Cart',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
+            NavigationDestination(
+              icon: Icon(Icons.favorite_border),
               label: 'Wishlist',
             ),
           ],
         ),
+
       );
     });
   }
