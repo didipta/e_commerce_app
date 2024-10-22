@@ -1,6 +1,8 @@
-import 'package:crafty_bay/data/models/category_model.dart';
-import 'package:crafty_bay/presentation/ui/widgets/category_card.dart';
+
+import 'package:e_commerce_app/data/models/category_model.dart';
 import 'package:flutter/material.dart';
+
+import '../category_card.dart';
 
 class HorizontalCategoryListView extends StatelessWidget {
   const HorizontalCategoryListView({

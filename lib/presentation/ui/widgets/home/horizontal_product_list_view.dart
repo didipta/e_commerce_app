@@ -2,6 +2,8 @@ import 'package:crafty_bay/data/models/product_model.dart';
 import 'package:crafty_bay/presentation/ui/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../data/models/product_model.dart';
+
 class HorizontalProductListView extends StatelessWidget {
   const HorizontalProductListView({
     super.key,

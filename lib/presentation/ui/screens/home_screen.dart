@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../state_holders/bottom_nav_bar_controller.dart';
+import '../../state_holders/new_product_list_controller.dart';
+import '../../state_holders/special_product_list_controller.dart';
+import '../widgets/centered_circular_progress_indicator.dart';
+import '../widgets/home/horizontal_product_list_view.dart';
+import '../widgets/home/section_header.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
