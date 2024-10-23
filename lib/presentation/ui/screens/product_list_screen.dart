@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../state_holders/product_list_by_category_controller.dart';
 import '../widgets/centered_circular_progress_indicator.dart';
+import '../widgets/product_card.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key, required this.category});

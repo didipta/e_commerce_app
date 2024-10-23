@@ -1,14 +1,20 @@
 
+import 'package:e_commerce_app/presentation/ui/widgets/home/horizontal_category_list_view.dart';
 import 'package:e_commerce_app/presentation/ui/widgets/home_banner_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../state_holders/bottom_nav_bar_controller.dart';
+import '../../state_holders/category_list_controller.dart';
 import '../../state_holders/new_product_list_controller.dart';
+import '../../state_holders/popular_product_list_controller.dart';
 import '../../state_holders/special_product_list_controller.dart';
+import '../utils/assets_path.dart';
 import '../widgets/centered_circular_progress_indicator.dart';
+import '../widgets/home/app_bar_icon_button.dart';
 import '../widgets/home/horizontal_product_list_view.dart';
+import '../widgets/home/search_text_field.dart';
 import '../widgets/home/section_header.dart';
 
 class HomeScreen extends StatefulWidget {

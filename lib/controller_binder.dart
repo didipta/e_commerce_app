@@ -1,9 +1,33 @@
+import 'package:e_commerce_app/presentation/state_holders/auth_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/bottom_nav_bar_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/category_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/new_product_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/popular_product_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/product_details_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/product_list_by_category_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/slider_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/special_product_list_controller.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+
+import 'data/services/network_caller.dart';
 
 class ControllerBinder extends Bindings {
   @override
   void dependencies() {
     Get.put(BottomNavBarController());
+    Get.put(Logger());
+    Get.put(AuthController());
+    Get.put(NetworkCaller(
+      logger: Get.find<Logger>(),
+      authController: Get.find<AuthController>(),
+    ));
+    Get.put(SliderListController());
+    Get.put(CategoryListController());
+    Get.put(NewProductListController());
+    Get.put(PopularProductListController());
+    Get.put(SpecialProductListController());
+    Get.put(ProductListByCategoryController());
+    Get.put(ProductDetailsController());
   }
 }
