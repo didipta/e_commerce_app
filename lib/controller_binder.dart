@@ -1,6 +1,8 @@
+import 'package:e_commerce_app/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/auth_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/bottom_nav_bar_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/category_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/email_verification_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/new_product_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/popular_product_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/product_details_controller.dart';
@@ -29,5 +31,8 @@ class ControllerBinder extends Bindings {
     Get.put(SpecialProductListController());
     Get.put(ProductListByCategoryController());
     Get.put(ProductDetailsController());
+    Get.put(AddToCartController());
+    Get.put(EmailVerificationController());
+
   }
 }

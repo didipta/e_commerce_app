@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/presentation/state_holders/bottom_nav_bar_controller.dart';
+import 'package:e_commerce_app/presentation/ui/screens/wishlist_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ import '../../state_holders/new_product_list_controller.dart';
 import '../../state_holders/popular_product_list_controller.dart';
 import '../../state_holders/slider_list_controller.dart';
 import '../../state_holders/special_product_list_controller.dart';
+import 'cart_screen.dart';
+import 'category_list_screen.dart';
 import 'home_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
@@ -25,21 +28,9 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
 
   final List<Widget> _screens = const [
     HomeScreen(),
-    Scaffold(
-      body: Center(
-        child: Text('Category Screen'),
-      ),
-    ),
-    Scaffold(
-      body: Center(
-        child: Text('Cart Screen'),
-      ),
-    ),
-    Scaffold(
-      body: Center(
-        child: Text('Wishlist Screen'),
-      ),
-    ),
+    CategoryListScreen(),
+    CartScreen(),
+    WishListScreen(),
   ];
 
   @override

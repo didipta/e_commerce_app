@@ -6,6 +6,8 @@ import 'package:e_commerce_app/presentation/ui/widgets/centered_circular_progres
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'otp_verification_screen.dart';
+
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
 
@@ -87,11 +89,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     bool result = await _emailVerificationController
         .verifyEmail(_emailTEController.text.trim());
     if (result) {
-      // Get.to(
-      //   () => OtpVerificationScreen(
-      //     email: _emailTEController.text.trim(),
-      //   ),
-      // );
+      Get.to(
+        () => OtpVerificationScreen(
+          email: _emailTEController.text.trim(),
+        ),
+      );
     } else {
       if (mounted) {
         showSnackBarMessage(
