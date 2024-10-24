@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/state_holders/Create_Profile_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/auth_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/bottom_nav_bar_controller.dart';
@@ -37,5 +38,6 @@ class ControllerBinder extends Bindings {
     Get.put(EmailVerificationController());
     Get.put(OtpVerificationController());
     Get.put(ReadProfileController());
+    Get.put(CreateProfileController());
   }
 }
