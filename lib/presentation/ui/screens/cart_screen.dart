@@ -23,9 +23,13 @@ class _CartScreenState extends State<CartScreen> {
   void initState() {
     super.initState();
     Get.find<AddToCartController>().getCartList();
-   print("zdkjvbskjfdvb");
-    print(_addToCartController.productList);
 
+
+
+  }
+
+  void cartdelete(int id) {
+    _addToCartController.deleteCart(id);
 
   }
 
@@ -74,6 +78,8 @@ class _CartScreenState extends State<CartScreen> {
                       itemBuilder: (context, index) {
                         return CartItemWidget(
                           product: addToCartController.productList[index],
+                          onDelete: cartdelete,
+
                         );
                       },
                     ),

@@ -9,8 +9,9 @@ import '../utils/assets_path.dart';
 
 class CartItemWidget extends StatelessWidget {
   final Cartproduct product;
+  final Function? onDelete;
   const CartItemWidget({
-    super.key, required this.product,
+    super.key, required this.product, this.onDelete,
   });
 
   @override
@@ -27,7 +28,7 @@ class CartItemWidget extends StatelessWidget {
       child: Row(
         children: [
           _buildProductImage(
-            product.image
+            product.product.image
 
           ),
           Expanded(
@@ -40,15 +41,20 @@ class CartItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                            product.product.title ??
                             '',
                             style: textTheme.bodyLarge,
                           ),
-                          _buildColorAndSize(textTheme),
+                          _buildColorAndSize(textTheme, product.size, product.color),
                         ],
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        onDelete!(
+                            product.id!
+                        );
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.grey,
@@ -65,16 +71,16 @@ class CartItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildColorAndSize(TextTheme textTheme) {
+  Widget _buildColorAndSize(TextTheme textTheme,String size, String color) {
     return Wrap(
       spacing: 8,
       children: [
         Text(
-          'Color: Red',
+          'Color: $color',
           style: textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
         Text(
-          'Size: XL',
+          'Size: $size',
           style: textTheme.bodySmall?.copyWith(color: Colors.grey),
         ),
       ],

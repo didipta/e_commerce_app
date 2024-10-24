@@ -1,11 +1,7 @@
-
 import 'package:get/get.dart';
-
 import '../../data/models/Cart_list_model.dart';
 import '../../data/models/Cart_model.dart';
 import '../../data/models/network_response.dart';
-import '../../data/models/product_list_model.dart';
-import '../../data/models/product_model.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/utils/urls.dart';
 
@@ -64,6 +60,26 @@ class AddToCartController extends GetxController {
     } else {
       _errorMessage = response.errorMessage;
     }
+    _inProgress = false;
+    update();
+    return isSuccess;
+  }
+
+  Future<bool> deleteCart(int id) async {
+    bool isSuccess = false;
+    _inProgress = true;
+    update();
+    final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
+      url: Urls.deleteCart(id),
+    );
+    if (response.isSuccess && response.responseData['msg'] == 'success') {
+      _Cartproduct.removeWhere((element) => element.id == id);
+      _errorMessage = null;
+      isSuccess = true;
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+
     _inProgress = false;
     update();
     return isSuccess;
