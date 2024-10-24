@@ -1,11 +1,16 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
-import '../../data/models/Cart_list_model.dart';
-import '../../data/models/Cart_model.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+
+import '../../data/models/Wish_list_model.dart';
 import '../../data/models/network_response.dart';
+import '../../data/models/wish_lists_model.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/utils/urls.dart';
 
-class AddToCartController extends GetxController {
+class WishListController extends GetxController {
   bool _inProgress = false;
 
   String? _errorMessage;
@@ -14,22 +19,17 @@ class AddToCartController extends GetxController {
 
   String? get errorMessage => _errorMessage;
 
-  List<Cartproduct> _Cartproduct = [];
+  List<Wishlist> _wishList = [];
 
-  List<Cartproduct> get productList => _Cartproduct;
+  List<Wishlist> get wishList => _wishList;
 
-  Future<bool> addToCart(
-      int productId, String color, String size, int quantity) async {
+  Future<bool> Createlist(int productId) async {
     bool isSuccess = false;
     _inProgress = true;
     update();
-    final NetworkResponse response =
-        await Get.find<NetworkCaller>().postRequest(url: Urls.addToCart, body: {
-      "product_id": productId,
-      "color": color,
-      "size": size,
-      "qty": quantity,
-    });
+    final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
+      url: Urls.CreateWishList(productId),
+    );
     if (response.isSuccess && response.responseData['msg'] == 'success') {
       _errorMessage = null;
       isSuccess = true;
@@ -42,19 +42,18 @@ class AddToCartController extends GetxController {
     return isSuccess;
   }
 
-  Future<bool> getCartList() async {
+  Future<bool> getWishList() async {
     bool isSuccess = false;
     _inProgress = true;
     update();
     final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
-      url: Urls.CartList,
+      url: Urls.WishList,
     );
-   ;
+    print(response.responseData['data']);
     if (response.isSuccess) {
+      _wishList = WishListsModel.fromJson(response.responseData).productList ?? [];
 
-      print(CartlistModel.fromJson(response.responseData).productList);
 
-      _Cartproduct = CartlistModel.fromJson(response.responseData).productList ?? [];
       isSuccess = true;
       _errorMessage = null;
     } else {
@@ -65,15 +64,15 @@ class AddToCartController extends GetxController {
     return isSuccess;
   }
 
-  Future<bool> deleteCart(int id) async {
+  Future<bool> deleteWishList(int productId) async {
     bool isSuccess = false;
     _inProgress = true;
     update();
     final NetworkResponse response = await Get.find<NetworkCaller>().getRequest(
-      url: Urls.deleteCart(id),
+      url: Urls.deleteWishList(productId),
     );
     if (response.isSuccess && response.responseData['msg'] == 'success') {
-      _Cartproduct.removeWhere((element) => element.productId == id);
+      _wishList.removeWhere((element) => element.productId == productId);
       _errorMessage = null;
       isSuccess = true;
     } else {
@@ -84,5 +83,4 @@ class AddToCartController extends GetxController {
     update();
     return isSuccess;
   }
-
 }

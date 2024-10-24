@@ -20,6 +20,7 @@ class HorizontalProductListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return ProductCard(
           product: productList[index],
+          isWishList: false,
         );
       },
       separatorBuilder: (_, __) => const SizedBox(width: 8),

@@ -2,7 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/product_model.dart';
 import '../../state_holders/bottom_nav_bar_controller.dart';
+import '../../state_holders/wish_list_controller.dart';
+import '../widgets/product_card.dart';
 
 class WishListScreen extends StatefulWidget {
   const WishListScreen({super.key});
@@ -12,6 +15,17 @@ class WishListScreen extends StatefulWidget {
 }
 
 class _WishListScreenState extends State<WishListScreen> {
+
+  final WishListController _wishListController =
+  Get.find<WishListController>();
+  @override
+  void initState() {
+    super.initState();
+    Get.find<WishListController>().getWishList();
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -27,17 +41,47 @@ class _WishListScreenState extends State<WishListScreen> {
             icon: const Icon(Icons.arrow_back_ios),
           ),
         ),
-        body: GridView.builder(
-          itemCount: 20,
+        body:  GetBuilder<WishListController>(
+        builder: (wishListController) {
+          if (wishListController.inProgress) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (wishListController.errorMessage != null) {
+            return Center(
+              child: Text(wishListController.errorMessage!),
+            );
+          }
+          if (wishListController.wishList.isEmpty) {
+            return const Center(
+              child: Text('Empty wishlist !'),
+            );
+          }
+          return GridView.builder(
+          itemCount: _wishListController.wishList.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 0.7,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-          ),
-          itemBuilder: (context, index) {
-            // return const ProductCard();
-          },
+            childAspectRatio: 1,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+            ),
+           itemBuilder: (context, index) {
+            return  FittedBox(
+              child: ProductCard(
+                product: ProductModel(
+                  id: _wishListController.wishList[index].product.id,
+                  title: _wishListController.wishList[index].product.title,
+                  price: _wishListController.wishList[index].product.price,
+                  image: _wishListController.wishList[index].product.image,
+                  star: _wishListController.wishList[index].product.star,
+                ),
+                isWishList: true,
+              ),
+            );
+         },
+          );
+        },
         ),
       ),
     );

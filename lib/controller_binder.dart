@@ -12,6 +12,7 @@ import 'package:e_commerce_app/presentation/state_holders/product_list_by_catego
 import 'package:e_commerce_app/presentation/state_holders/read_profile_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/slider_list_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/special_product_list_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/wish_list_controller.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -39,5 +40,6 @@ class ControllerBinder extends Bindings {
     Get.put(OtpVerificationController());
     Get.put(ReadProfileController());
     Get.put(CreateProfileController());
+    Get.put(WishListController());
   }
 }

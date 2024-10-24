@@ -17,19 +17,25 @@ class CartScreen extends StatefulWidget {
 
 
 class _CartScreenState extends State<CartScreen> {
+  String totalPrice = '0.0';
   final AddToCartController _addToCartController =
   Get.find<AddToCartController>();
   @override
   void initState() {
     super.initState();
     Get.find<AddToCartController>().getCartList();
-
+    setState(() {
+      totalPrice = _addToCartController.productList.fold(0.0, (previousValue, element) => previousValue + double.parse(element.price)).toString();
+    });
 
 
   }
 
   void cartdelete(int id) {
     _addToCartController.deleteCart(id);
+    setState(() {
+      totalPrice = _addToCartController.productList.fold(0.0, (previousValue, element) => previousValue + double.parse(element.price)).toString();
+    });
 
   }
 
@@ -106,12 +112,12 @@ class _CartScreenState extends State<CartScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Column(
+           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Total Price'),
               Text(
-                '\$10000',
+                '\$${totalPrice.toString()}',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

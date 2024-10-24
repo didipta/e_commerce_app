@@ -52,7 +52,7 @@ class CartItemWidget extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         onDelete!(
-                            product.id!
+                            product.productId!
                         );
                       },
                       icon: const Icon(
@@ -62,7 +62,7 @@ class CartItemWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                _buildPriceAndCounter(textTheme)
+                _buildPriceAndCounter(textTheme, product.product.price),
               ],
             ),
           )
@@ -87,12 +87,12 @@ class CartItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPriceAndCounter(TextTheme textTheme) {
+  Widget _buildPriceAndCounter(TextTheme textTheme,String price) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '\$100',
+          '\$$price',
           style: textTheme.titleMedium?.copyWith(color: AppColors.themeColor),
         ),
         ItemCount(
@@ -101,7 +101,9 @@ class CartItemWidget extends StatelessWidget {
           maxValue: 20,
           decimalPlaces: 0,
           color: AppColors.themeColor,
-          onChanged: (value) {},
+          onChanged: (value) {
+
+          },
         ),
       ],
     );

@@ -60,6 +60,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             return FittedBox(
               child: ProductCard(
                 product: productListByCategoryController.productList[index],
+                isWishList: false,
               ),
             );
           },
