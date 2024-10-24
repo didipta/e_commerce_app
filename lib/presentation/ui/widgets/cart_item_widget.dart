@@ -1,14 +1,20 @@
 
+import 'package:e_commerce_app/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 
+import '../../../data/models/Cart_model.dart';
 import '../utils/app_colors.dart';
 import '../utils/assets_path.dart';
 
 class CartItemWidget extends StatelessWidget {
+  final Cartproduct product;
   const CartItemWidget({
-    super.key,
+    super.key, required this.product,
   });
+
+  @override
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,10 @@ class CartItemWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Row(
         children: [
-          _buildProductImage(),
+          _buildProductImage(
+            product.image
+
+          ),
           Expanded(
             child: Column(
               children: [
@@ -31,7 +40,7 @@ class CartItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Title of product',
+                            '',
                             style: textTheme.bodyLarge,
                           ),
                           _buildColorAndSize(textTheme),
@@ -92,11 +101,11 @@ class CartItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildProductImage() {
+  Widget _buildProductImage(image) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Image.asset(
-        AssetsPath.dummyProductImg,
+      child: Image.network(
+        image ?? '',
         height: 80,
         width: 80,
         fit: BoxFit.scaleDown,

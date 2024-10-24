@@ -20,6 +20,7 @@ class ReadProfileController extends GetxController {
   String? get errorMessage => _errorMessage;
 
   Future<bool> getProfileDetails(String token) async {
+    print('token: $token');
     bool isSuccess = false;
     _inProgress = true;
     update();

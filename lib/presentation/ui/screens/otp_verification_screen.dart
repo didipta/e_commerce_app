@@ -45,7 +45,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'A 4 digit OTP has been sent to email',
+                'A 4 digit OTP has been sent to email ',
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge
@@ -120,7 +120,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         if (_readProfileController.isProfileCompleted) {
           Get.offAll(() => const MainBottomNavScreen());
         } else {
-          Get.to(() => const CompleteProfileScreen());
+          Get.to(() => CompleteProfileScreen(
+            token: _otpVerificationController.accessToken,
+          ));
         }
       } else {
         if (mounted) {

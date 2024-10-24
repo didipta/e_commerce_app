@@ -7,7 +7,9 @@ import '../utils/snack_message.dart';
 import 'main_bottom_nav_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+  final String token;
+  CompleteProfileScreen({super.key, required this.token});
+
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
@@ -263,7 +265,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         "ship_phone": _shipPhoneController.text
       };
 
-      bool result = await _createProfileController.CreateProfile(data);
+      bool result = await _createProfileController.CreateProfile(data, widget.token);
       if (result) {
 
         if (mounted) {
