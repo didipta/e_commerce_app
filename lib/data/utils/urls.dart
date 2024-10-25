@@ -19,6 +19,7 @@ class Urls {
   static String productListByCategory(int categoryId) =>
       '$_baseUrl/ListProductByCategory/$categoryId';
 
+
   static String productDetailsByID(int productId) =>
       '$_baseUrl/ProductDetailsById/$productId';
 
@@ -27,4 +28,7 @@ class Urls {
 
   static String verifyOtp(String email, String otp) =>
       '$_baseUrl/VerifyLogin/$email/$otp';
+
+  static String ListReviewByProduct(int productid) =>
+      '$_baseUrl/ListReviewByProduct/$productid';
 }

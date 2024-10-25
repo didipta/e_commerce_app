@@ -1,4 +1,5 @@
 
+import 'package:e_commerce_app/presentation/ui/screens/Reviews_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
@@ -182,7 +183,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         const SizedBox(width: 8),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => ReviewScreen(id: productDetails.product!.id));
+          },
           child: const Text(
             'Reviews',
             style: TextStyle(

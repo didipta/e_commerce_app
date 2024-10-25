@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/presentation/state_holders/Create_Profile_controller.dart';
+import 'package:e_commerce_app/presentation/state_holders/Reviews_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/add_to_cart_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/auth_controller.dart';
 import 'package:e_commerce_app/presentation/state_holders/bottom_nav_bar_controller.dart';
@@ -41,5 +42,6 @@ class ControllerBinder extends Bindings {
     Get.put(ReadProfileController());
     Get.put(CreateProfileController());
     Get.put(WishListController());
+    Get.put(ReviewController());
   }
 }
