@@ -40,4 +40,27 @@ class ReviewController extends GetxController {
     update();
     return isSuccess;
   }
+
+  Future<bool> createReview(int? productId, String review, int rating) async {
+    bool isSuccess = false;
+    _inProgress = true;
+    update();
+    final NetworkResponse response = await Get.find<NetworkCaller>().postRequest(
+      url: Urls.CreateProductReview,
+      body: {
+        "description": review,
+        "product_id": productId,
+        "rating": rating,
+      },
+    );
+    if (response.isSuccess) {
+      isSuccess = true;
+      _errorMessage = null;
+    } else {
+      _errorMessage = response.errorMessage;
+    }
+    _inProgress = false;
+    update();
+    return isSuccess;
+  }
 }

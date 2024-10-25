@@ -7,6 +7,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../state_holders/Reviews_controller.dart';
 import '../widgets/centered_circular_progress_indicator.dart';
+import 'Create_review_screen.dart';
 
 class ReviewScreen extends StatefulWidget {
   final int? id;
@@ -157,6 +158,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
               child: ElevatedButton(
 
                 onPressed: () {
+                  Get.to(() => ReviewCreateScreen(
+                    productId: widget.id!,
+                  ));
                   // Handle add review action
                 },
                 child:Icon(
