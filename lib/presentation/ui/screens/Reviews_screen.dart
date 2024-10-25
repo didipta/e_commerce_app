@@ -132,16 +132,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              child: Text(
-                'Reviews (${Get.find<ReviewController>().reviewList.length})',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.themeColor,
-                ),
-              ),
-            ),
+    GetBuilder<ReviewController>(
+    builder: (reviewController) {
+      if (reviewController.inProgress) {
+        return Text("");
+      }
+      return  Text(
+        'Reviews (${reviewController.reviewList.length})',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: AppColors.themeColor,
+        ),
+      );
+    }
+    ),
             Container(
               width: 50,
               height: 50,

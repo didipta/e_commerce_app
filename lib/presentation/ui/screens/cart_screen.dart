@@ -116,13 +116,22 @@ class _CartScreenState extends State<CartScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Total Price'),
-              Text(
-                '\$${totalPrice.toString()}',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.themeColor),
-              )
+    GetBuilder<AddToCartController>(
+    builder: (addToCartController) {
+      if (addToCartController.inProgress) {
+        return const Center(
+          child: Text(""),
+        );
+      }
+    return   Text(
+      '\$${addToCartController.productList.fold(0.0, (previousValue, element) => previousValue + double.parse(element.price)).toString()}',
+      style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: AppColors.themeColor),
+    );
+    }),
+
             ],
           ),
           SizedBox(
