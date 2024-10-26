@@ -6,8 +6,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../state_holders/Reviews_controller.dart';
+import '../../state_holders/auth_controller.dart';
 import '../widgets/centered_circular_progress_indicator.dart';
 import 'Create_review_screen.dart';
+import 'email_verification_screen.dart';
 
 class ReviewScreen extends StatefulWidget {
   final int? id;
@@ -22,7 +24,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
     Get.find<ReviewController>().getReviewList(widget.id!);
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -158,6 +162,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
               child: ElevatedButton(
 
                 onPressed: () {
+                  bool isLoggedInUser = Get.find<AuthController>().isLoggedInUser();
+                  if (!isLoggedInUser) {
+                    Get.to(() => const EmailVerificationScreen());
+                    return;
+                  }
                   Get.to(() => ReviewCreateScreen(
                     productId: widget.id!,
                   ));

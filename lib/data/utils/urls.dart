@@ -14,7 +14,7 @@ class Urls {
   static String CreateWishList (int id) => '$_baseUrl/CreateWishList/$id';
   static String WishList = '$_baseUrl/ProductWishList';
   static String deleteWishList(int id) => '$_baseUrl/RemoveWishList/$id';
-
+  static const String createInvoice = '$_baseUrl/InvoiceCreate';
   static String productListByRemark(String remark) =>
       '$_baseUrl/ListProductByRemark/$remark';
 

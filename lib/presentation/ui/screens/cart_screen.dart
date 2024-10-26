@@ -1,4 +1,5 @@
 
+import 'package:e_commerce_app/presentation/ui/screens/payment_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<AddToCartController>().getCartList();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<AddToCartController>().getCartList();
+    });
     setState(() {
       totalPrice = _addToCartController.productList.fold(0.0, (previousValue, element) => previousValue + double.parse(element.price)).toString();
     });
@@ -137,10 +140,13 @@ class _CartScreenState extends State<CartScreen> {
           SizedBox(
               width: 140,
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text('Checkout')))
+                  onPressed: _onTapCheckOutButton, child: const Text('Checkout')))
         ],
       ),
     );
+  }
+  void _onTapCheckOutButton() {
+    Get.to(() => const PaymentDetailsScreen());
   }
 
   void backToHome() {
